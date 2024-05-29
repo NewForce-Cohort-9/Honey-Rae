@@ -13,20 +13,24 @@ import { TicketSearch } from "./TicketSearch"
 //   "dateCompleted": "Fri Apr 29 2022 14:02:20 GMT-0500 (Central Daylight Time)"
 //   },
 
-export const TicketList = () => {
+export const TicketList = ({currentUser}) => {
   const [allTickets, setAllTickets] = useState([])
   const [showEmergency, setShowEmegency] = useState(false)
   const [filteredTickets, setFilteredTickets] = useState([])
   const [searchQuery, setsearchQuery] = useState("")
 
 
+  //future Sarah: we need to run this fetch call and not getAllTickets so we have all information for TicketCard
+const resetState = () => {
+  getTicketsByAssignee().then(ticketArray => {
+    setAllTickets(ticketArray)
+  })
+}
   // Initial UseEffect:
   // useEffect to fetch tickets and set to allTickets on initial render
   // useEffect(() => {}, [])
   useEffect(() => {
-    getTicketsByAssignee().then(ticketsArray => {
-      setAllTickets(ticketsArray)
-    })
+    resetState()
   }, [])
 
   useEffect(() => {
@@ -57,7 +61,7 @@ export const TicketList = () => {
     <TicketSearch setSearchQuery={setsearchQuery} searchQuery={searchQuery} />
       <ul>
       {filteredTickets.map(ticket => {
-        return <TicketCard key={ticket.id} ticket={ticket} />
+        return <TicketCard key={ticket.id} ticket={ticket} currentUser={currentUser} resetState={resetState}/>
       })}
       </ul>
     </article>
