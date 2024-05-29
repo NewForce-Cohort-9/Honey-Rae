@@ -1,12 +1,11 @@
-import { CustomerList } from "./components/customers/CustomersList"
-import { TicketList } from "./components/tickets/TicketList"
+import { ApplicationViews } from "./views/ApplicationViews"
+
 
 
 export const App = () => {
 return(
 <>
-<TicketList/>
-<CustomerList />
+<ApplicationViews/>
 </>
 )
 }
