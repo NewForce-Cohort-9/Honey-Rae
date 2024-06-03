@@ -20,7 +20,7 @@ export const createEmployeeTicket = (employeeTicket) => {
 
 
 export const editTicket = (ticket) => {
-    return(`http://localhost:8088/serviceTickets/${ticket.id}`, {
+    return fetch(`http://localhost:8088/serviceTickets/${ticket.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

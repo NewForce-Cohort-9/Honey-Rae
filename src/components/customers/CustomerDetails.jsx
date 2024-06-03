@@ -16,7 +16,7 @@ useEffect(() => {
 }, [])
 
 return <>
-    <UserCard user={customer} />
+    <UserCard user={customer} key={customer.id}/>
 </>
 
 }
